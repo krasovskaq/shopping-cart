@@ -3,13 +3,11 @@ import Features from "./Features";
 import PromoBanner from "./PromoBanner";
 
 export default function HomePage() {
-
-    return (
-        <section>
-
-            <HeroSection/>
-            <Features/>
-            <PromoBanner/>
-        </section>
-    )
+  return (
+    <section>
+      <HeroSection />
+      <Features />
+      <PromoBanner />
+    </section>
+  );
 }

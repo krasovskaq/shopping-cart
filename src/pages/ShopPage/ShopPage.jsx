@@ -2,25 +2,10 @@ import { mockProducts } from "./products";
 import { useOutletContext } from "react-router";
 export default function ShopPage() {
     
-    const [cart, setCart]= useOutletContext()
+    const {cart, setCart, addToCart}= useOutletContext();
 
-      const addToCart = (product) => {
-  
-    setCart((prev) =>  {
-      const existing =  prev.find((productItem) => productItem.id === product.id) 
-      if(existing) {
-        return prev.map((item) => (
-          item.id === product.id ?  {...item, quantity: item.quantity + 1} : item)
-  
-    );
-  }
-  
-     return [ 
-      ...prev, 
-      {id : product.id, title: product.title, quantity: 1, price: product.price, oldPrice: product.oldPrice}]
-  })
-}
 
+    
     return(
 
         <section>
@@ -36,7 +21,7 @@ export default function ShopPage() {
                                 <div className="font-bold">
                                    <span>{product.price}</span><span>{product.oldPrice}</span>
                                 </div>
-                        <button onClick={ () => addToCart(product)} className="cursor-pointer border-2 border-amber-200">Add to Cart</button>
+                        <button onClick={() => addToCart(product)} className="cursor-pointer border-2 border-amber-200">Add to Cart</button>
                        </div>
                      
                     </div>

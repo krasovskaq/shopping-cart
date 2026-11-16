@@ -1,31 +1,28 @@
 import { mockProducts } from "./ShopPage/products";
 import { useOutletContext } from "react-router";
-export default function  CartPage() {
+export default function CartPage() {
+   const {cart, setCart, addToCart, minusFromCart}= useOutletContext();
 
-    const [cart, setCart] = useOutletContext();
-
-    return(
-        <section>
+  return (
+    <section>
+      <div>
+        {cart.map((product) => (
+          <div key={product.key}>
             <div>
-                {cart.map((product) => (
-                    <div key={product.key}>
-
-                        <div>
-                        <img src={product.title}/>
-                        <h4>{product.title}</h4>
-                        <button>+</button> <button>-</button> 
-                        </div>
-                   
-                        <div>
-                            <span>{product.price}</span><span>{product.oldPrice}</span>
-                            <span>{product.quantity}</span> <span>remove</span>
-                        </div>
-                      
-
-                    </div>
-                ))}
+              <img src={product.title} />
+              <h4>{product.title}</h4>
+              <button onClick={ () => addToCart(product)}>+</button> <span>{product.quantity} </span>{" "}
+              <button onClick={ () => removeFromCart(product)}>-</button>
             </div>
-        </section>
-    )
-  
+
+            <div>
+              <span>{product.price}</span>
+              <span>{product.oldPrice}</span>
+              <span>{product.quantity}</span> <span>remove</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
