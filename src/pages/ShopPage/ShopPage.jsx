@@ -2,7 +2,7 @@ import { mockProducts } from "./products";
 import { useOutletContext } from "react-router";
 export default function ShopPage() {
     
-    const {cart, setCart, addToCart}= useOutletContext();
+    const {cart, setCart, addToCart, removeFromCart}= useOutletContext();
 
 
     
@@ -13,7 +13,7 @@ export default function ShopPage() {
                 {mockProducts.map((product) => {
                    if (product.inStock) {
                     return(
-                        <div key={product.key} className=" w-55 h-60">
+                        <div key={product.id} className=" w-55 h-60">
                         <img src={product.title} className="bg-amber-100 h-50 w-full"/>
                        <div>
                            <span className="text-xs">{product.category}</span>
@@ -21,7 +21,11 @@ export default function ShopPage() {
                                 <div className="font-bold">
                                    <span>{product.price}</span><span>{product.oldPrice}</span>
                                 </div>
-                        <button onClick={() => addToCart(product)} className="cursor-pointer border-2 border-amber-200">Add to Cart</button>
+
+                                {(cart[product.id] ) 
+                                ? <> <button onClick={() => addToCart(product)}>+</button> <span>{cart[product.id].quantity}</span>  <button onClick={() => removeFromCart(product) }>-</button> </>
+                                :  <button onClick={() => addToCart(product)} className="cursor-pointer border-2 border-amber-200">Add to Cart</button> }
+                       
                        </div>
                      
                     </div>

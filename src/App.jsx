@@ -8,6 +8,7 @@ import { Outlet } from 'react-router'
 function App() {
   const [cart, setCart] = useState([]);
 
+
   const cartSample = [
     {
       id: 1,
@@ -23,45 +24,51 @@ function App() {
       console.log(1)
     
       setCart((prev) =>  {
-        const existing =  prev.find((productItem) => productItem.id === product.id) 
+        const existing =  prev[product.id]
         if(existing) {
-          return prev.map((item) => (
-            item.id === product.id ?  {...item, quantity: item.quantity + 1} : item)
-    
-      );
+
+          return {
+            ...prev,
+            [product.id]: {...existing, quantity: existing.quantity + 1}
+          }
+       
     }
     
-       return [ 
+       return {
         ...prev, 
-        {id : product.id, title: product.title, quantity: 1, price: product.price, oldPrice: product.oldPrice}]
+        [product.id]: { id: product.id, title: product.title, quantity: 1, price: product.price, oldPrice: product.oldPrice },
+       }
     })
   }
 
   const removeFromCart = (product) => {
     setCart((prev) => {
-      const existing = prev.find(
-        (productItem) => productItem.id === product.id,
-      );
+      const existing = cart[product.id];
       if (!existing) return prev;
 
       if (existing.quantity === 1) {
-        return prev.filter((productItem) => productItem.id !== product.id)
+       return removeItem(prev, product)
       }
-       return prev.map((productItem) => 
-            product.id === productItem.id  ?
-            {...productItem, quantity: productItem.quantity - 1 } :
-            productItem
-          
-        );
+       return {
+        ...prev, 
+        [product.id] : {...existing, quantity: existing.quantity - 1 }
+       };
       }
     );
   };
 
+  const removeItem = (prev, product) => {
+
+       const newCart = {...prev}
+        delete newCart[product.id]
+        return newCart
+
+  }
   return (
     <>
   
       <Heading cart={cart}/>
-      <Outlet context={{cart, setCart, addToCart,removeFromCart }} />
+      <Outlet context={{cart, setCart, addToCart, removeFromCart, removeItem }} />
     </>
   )
 }

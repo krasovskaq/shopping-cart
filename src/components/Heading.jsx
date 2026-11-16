@@ -17,7 +17,7 @@ export default function Heading({cart}) {
         <nav>
             <ul className="flex flex-row gap-10">
                 <li>Search</li>
-                <Link to="cart">Cart <span>{cart.reduce((sum, item) => item.quantity + sum, 0)}</span></Link>
+                <Link to="cart">Cart <span>{Object.values(cart).reduce((sum, item) => item.quantity + sum, 0)}</span></Link>
                 <li></li>
             </ul>
         </nav>
