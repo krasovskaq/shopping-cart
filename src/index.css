@@ -41,4 +41,7 @@
 @theme {
   --font-display: "BBH Bogle", sans-serif;
   --font-heading-2: "Bebas Neue";
+  --font-main: "Ubuntu";
+  --font-main-2: "Montserrat";
+  --font-main-3: "Plus Jakarta Sans";
 }

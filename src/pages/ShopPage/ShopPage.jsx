@@ -8,7 +8,7 @@ export default function ShopPage() {
     
     return(
 
-        <section>
+        <section className="py-10">
             <div className="min-w-full grid grid-cols-4 gap-20 my-10">
                 {mockProducts.map((product) => {
                    if (product.inStock) {

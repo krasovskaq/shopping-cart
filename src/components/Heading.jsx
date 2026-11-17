@@ -5,7 +5,7 @@ export default function Heading({cart}) {
 
     return (
 
-    <header  className="select-none flex flex-row justify-between items-center px-25 py-10 font-heading-2 font-normal text-2xl border-b">
+    <header  className="select-none flex flex-row justify-between items-center px-25 py-10 font-heading-2 font-normal text-2xl border-b-3">
         <nav className="tracking-widest ">
             <ul className="flex flex-row gap-10 text-gray-700 ">
                 <Link to="home" className="after:opacity-0 after:bg-gray-800  after:block after:h-px after:w-full hover:after:opacity-100 hover:text-gray-900">Home</Link>
